@@ -1,0 +1,1075 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Digigroww — India's Growth Ecosystem</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --black:#0a0a0a;--white:#fff;--cream:#faf8f4;--off:#f5f3ef;
+  --accent:#1a3cff;--accent-light:#e8ecff;--accent-dark:#0f25b3;
+  --gold:#d4a017;--gold-light:#fef7e4;
+  --green:#00c896;--green-light:#e0fff6;
+  --red:#ff4757;--red-light:#fff0f1;
+  --purple:#7c3aed;--purple-light:#f3eeff;
+  --muted:#6b7280;--border:rgba(0,0,0,0.08);
+  --shadow:0 4px 24px rgba(0,0,0,0.07);
+  --shadow-lg:0 12px 48px rgba(0,0,0,0.12);
+}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--black);overflow-x:hidden;line-height:1.6}
+
+/* ── UTILS ── */
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.page{display:none;animation:fadeIn .3s ease}
+.page.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.container{max-width:1160px;margin:0 auto;padding:0 40px}
+.tag{display:inline-flex;align-items:center;gap:6px;padding:4px 12px;border-radius:100px;font-size:11px;font-weight:600;letter-spacing:.05em;text-transform:uppercase}
+.badge-blue{background:var(--accent-light);color:var(--accent)}
+.badge-gold{background:var(--gold-light);color:#92600a}
+.badge-green{background:var(--green-light);color:#007a5a}
+.badge-red{background:var(--red-light);color:#c0392b}
+.badge-purple{background:var(--purple-light);color:var(--purple)}
+.badge-gray{background:var(--off);color:var(--muted)}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 28px;border-radius:100px;font-size:14px;font-weight:500;cursor:pointer;border:none;text-decoration:none;transition:all .2s;font-family:inherit}
+.btn-dark{background:var(--black);color:#fff}.btn-dark:hover{background:var(--accent);transform:translateY(-2px)}
+.btn-accent{background:var(--accent);color:#fff}.btn-accent:hover{background:var(--accent-dark);transform:translateY(-2px)}
+.btn-outline{background:transparent;color:var(--black);border:1.5px solid var(--border)}.btn-outline:hover{border-color:var(--black)}
+.btn-ghost{background:transparent;color:var(--muted);border:none}.btn-ghost:hover{color:var(--black)}
+.btn-sm{padding:8px 18px;font-size:13px}
+.card{background:#fff;border:1px solid var(--border);border-radius:20px;padding:28px;transition:transform .2s,box-shadow .2s}
+.card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+.input-field{width:100%;padding:12px 16px;border:1.5px solid var(--border);border-radius:12px;font-size:14px;font-family:inherit;background:#fff;color:var(--black);outline:none;transition:border-color .2s}
+.input-field:focus{border-color:var(--accent)}
+.select-field{width:100%;padding:12px 16px;border:1.5px solid var(--border);border-radius:12px;font-size:14px;font-family:inherit;background:#fff;color:var(--black);outline:none;cursor:pointer;transition:border-color .2s;appearance:none}
+.select-field:focus{border-color:var(--accent)}
+.label{font-size:12px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px;display:block}
+.section-eyebrow{font-size:11px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+.section-h{font-family:'Syne',sans-serif;font-size:clamp(30px,4vw,48px);font-weight:800;letter-spacing:-1.5px;line-height:1.1;margin-bottom:16px}
+.section-sub{font-size:16px;color:var(--muted);font-weight:300;line-height:1.75;max-width:500px}
+
+/* ── NAV ── */
+#nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(250,248,244,.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:64px;max-width:1160px;margin:0 auto;padding:0 40px}
+.logo{font-family:'Syne',sans-serif;font-weight:800;font-size:20px;letter-spacing:-.5px;color:var(--black);text-decoration:none;cursor:pointer}
+.logo span{color:var(--accent)}
+.nav-tabs{display:flex;gap:4px}
+.nav-tab{padding:7px 16px;border-radius:100px;font-size:13px;font-weight:500;color:var(--muted);cursor:pointer;transition:all .2s;border:none;background:transparent;font-family:inherit}
+.nav-tab:hover{color:var(--black);background:var(--off)}
+.nav-tab.active{background:var(--black);color:#fff}
+.nav-right{display:flex;align-items:center;gap:12px}
+.nav-user{display:flex;align-items:center;gap:10px;font-size:13px;font-weight:500;cursor:pointer}
+.avatar{width:34px;height:34px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0}
+
+/* ══════════════════════════════════
+   PAGE: HOME
+══════════════════════════════════ */
+.hero-wrap{padding:130px 40px 80px;max-width:1160px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.hero-live{display:inline-flex;align-items:center;gap:8px;background:var(--accent-light);color:var(--accent);padding:6px 16px;border-radius:100px;font-size:12px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;margin-bottom:24px}
+.hero-live::before{content:'';width:7px;height:7px;background:var(--accent);border-radius:50%;animation:blink 1.8s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.hero-h{font-family:'Syne',sans-serif;font-size:clamp(42px,5.5vw,72px);font-weight:800;letter-spacing:-2.5px;line-height:1.02;margin-bottom:22px}
+.hero-h em{font-style:normal;color:var(--accent);display:block}
+.hero-sub{font-size:17px;color:var(--muted);font-weight:300;line-height:1.75;max-width:440px;margin-bottom:36px}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:48px}
+.hero-trust{display:flex;align-items:center;gap:16px;font-size:13px;color:var(--muted)}
+.trust-avatars{display:flex}
+.trust-avatars .avatar{width:28px;height:28px;font-size:10px;border:2px solid #fff;margin-left:-6px}
+.trust-avatars .avatar:first-child{margin-left:0}
+.hero-cards{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.hero-card{background:#fff;border:1px solid var(--border);border-radius:18px;padding:24px;cursor:pointer;transition:all .2s;position:relative;overflow:hidden}
+.hero-card::after{content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:3px 3px 0 0}
+.hero-card.c-blue::after{background:var(--accent)}
+.hero-card.c-gold::after{background:var(--gold)}
+.hero-card.c-green::after{background:var(--green)}
+.hero-card.c-purple::after{background:var(--purple)}
+.hero-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-lg)}
+.hero-card .icon{font-size:26px;margin-bottom:12px}
+.hero-card h4{font-family:'Syne',sans-serif;font-size:15px;font-weight:700;margin-bottom:6px}
+.hero-card p{font-size:13px;color:var(--muted);line-height:1.6}
+.hero-card .card-arrow{position:absolute;top:20px;right:20px;font-size:16px;color:var(--border);transition:color .2s}
+.hero-card:hover .card-arrow{color:var(--accent)}
+
+/* stats bar */
+.stats-bar{background:var(--black);padding:28px 40px}
+.stats-inner{max-width:1160px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:0}
+.stat-item{text-align:center;padding:0 20px;border-right:1px solid rgba(255,255,255,.08)}
+.stat-item:last-child{border-right:none}
+.stat-n{font-family:'Syne',sans-serif;font-size:34px;font-weight:800;color:#fff;letter-spacing:-1px;line-height:1}
+.stat-l{font-size:12px;color:rgba(255,255,255,.45);margin-top:6px;text-transform:uppercase;letter-spacing:.06em}
+
+/* courses row */
+.courses-section{padding:80px 0}
+.section-header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:36px}
+.courses-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.course-card{background:#fff;border:1px solid var(--border);border-radius:20px;overflow:hidden;cursor:pointer;transition:all .2s}
+.course-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-lg)}
+.course-thumb{height:140px;display:flex;align-items:center;justify-content:center;font-size:52px;position:relative}
+.course-body{padding:20px}
+.course-meta{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.course-title{font-family:'Syne',sans-serif;font-size:16px;font-weight:700;margin-bottom:8px;line-height:1.3}
+.course-instructor{font-size:13px;color:var(--muted);display:flex;align-items:center;gap:8px;margin-bottom:14px}
+.course-footer{display:flex;align-items:center;justify-content:space-between;padding-top:14px;border-top:1px solid var(--border)}
+.course-price{font-family:'Syne',sans-serif;font-size:18px;font-weight:700}
+.rating{display:flex;align-items:center;gap:4px;font-size:13px;color:var(--muted)}
+.stars{color:#f59e0b;letter-spacing:-2px;font-size:13px}
+
+/* ══════════════════════════════════
+   PAGE: COURSES
+══════════════════════════════════ */
+.courses-page{padding:90px 0 60px}
+.page-hero{background:var(--black);padding:60px 40px;margin-bottom:0}
+.page-hero-inner{max-width:1160px;margin:0 auto}
+.page-hero h1{font-family:'Syne',sans-serif;font-size:48px;font-weight:800;color:#fff;letter-spacing:-2px;margin-bottom:12px}
+.page-hero p{font-size:16px;color:rgba(255,255,255,.5);max-width:480px;font-weight:300}
+.search-bar-wrap{max-width:1160px;margin:0 auto;padding:0 40px;transform:translateY(-28px)}
+.search-bar{background:#fff;border:1px solid var(--border);border-radius:16px;padding:14px 20px;display:flex;gap:12px;align-items:center;box-shadow:var(--shadow-lg)}
+.search-bar input{flex:1;border:none;outline:none;font-size:15px;font-family:inherit;background:transparent}
+.search-icon{font-size:18px;color:var(--muted)}
+.filter-chips{display:flex;gap:8px;flex-wrap:wrap;max-width:1160px;margin:0 auto;padding:0 40px 32px}
+.chip{padding:7px 18px;border-radius:100px;font-size:13px;font-weight:500;cursor:pointer;border:1.5px solid var(--border);background:#fff;color:var(--muted);transition:all .2s;font-family:inherit}
+.chip:hover,.chip.active{background:var(--black);color:#fff;border-color:var(--black)}
+.courses-list{max-width:1160px;margin:0 auto;padding:0 40px;display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+
+/* course detail modal */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:300;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity .25s}
+.modal-overlay.open{opacity:1;pointer-events:all}
+.modal{background:#fff;border-radius:28px;width:100%;max-width:640px;max-height:90vh;overflow-y:auto;padding:40px;position:relative;transform:translateY(20px);transition:transform .25s}
+.modal-overlay.open .modal{transform:translateY(0)}
+.modal-close{position:absolute;top:20px;right:20px;width:36px;height:36px;border-radius:50%;background:var(--off);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:18px;color:var(--muted)}
+.modal-close:hover{background:var(--border)}
+
+/* ══════════════════════════════════
+   PAGE: JOBS
+══════════════════════════════════ */
+.jobs-page{padding:80px 0 60px}
+.jobs-layout{max-width:1160px;margin:0 auto;padding:0 40px;display:grid;grid-template-columns:320px 1fr;gap:32px;align-items:start}
+.filter-panel{background:#fff;border:1px solid var(--border);border-radius:20px;padding:28px;position:sticky;top:84px}
+.filter-panel h3{font-family:'Syne',sans-serif;font-size:18px;font-weight:700;margin-bottom:24px}
+.filter-group{margin-bottom:24px}
+.filter-group .label{margin-bottom:10px}
+.checkbox-item{display:flex;align-items:center;gap:10px;padding:6px 0;cursor:pointer;font-size:14px;color:var(--muted)}
+.checkbox-item input{accent-color:var(--accent);width:16px;height:16px;cursor:pointer}
+.checkbox-item:hover{color:var(--black)}
+.jobs-list{display:flex;flex-direction:column;gap:16px}
+.job-card{background:#fff;border:1px solid var(--border);border-radius:20px;padding:28px;cursor:pointer;transition:all .2s;display:grid;grid-template-columns:52px 1fr auto;gap:20px;align-items:start}
+.job-card:hover{box-shadow:var(--shadow-lg);border-color:rgba(26,60,255,.2)}
+.job-logo{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
+.job-title{font-family:'Syne',sans-serif;font-size:17px;font-weight:700;margin-bottom:4px}
+.job-company{font-size:14px;color:var(--muted);margin-bottom:12px}
+.job-tags{display:flex;gap:8px;flex-wrap:wrap}
+.job-right{text-align:right;flex-shrink:0}
+.job-ctc{font-family:'Syne',sans-serif;font-size:18px;font-weight:700;color:var(--green);margin-bottom:8px}
+.job-posted{font-size:12px;color:var(--muted)}
+
+/* ══════════════════════════════════
+   PAGE: SALARY CALCULATOR
+══════════════════════════════════ */
+.calc-page{padding:80px 0}
+.calc-layout{max-width:1000px;margin:0 auto;padding:0 40px}
+.calc-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-top:40px}
+.calc-panel{background:#fff;border:1px solid var(--border);border-radius:24px;padding:32px}
+.calc-panel h3{font-family:'Syne',sans-serif;font-size:20px;font-weight:700;margin-bottom:24px}
+.form-group{margin-bottom:20px}
+.regime-tabs{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:0}
+.regime-tab{padding:10px;text-align:center;border-radius:10px;font-size:13px;font-weight:600;cursor:pointer;border:1.5px solid var(--border);background:#fff;color:var(--muted);transition:all .2s;font-family:inherit}
+.regime-tab.active{background:var(--black);color:#fff;border-color:var(--black)}
+.result-row{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid var(--border);font-size:14px}
+.result-row:last-of-type{border-bottom:none}
+.result-row .r-label{color:var(--muted)}
+.result-row .r-val{font-weight:600}
+.result-row.deduction .r-val{color:var(--red)}
+.result-highlight{background:var(--accent);border-radius:16px;padding:20px 24px;display:flex;justify-content:space-between;align-items:center;margin-top:20px}
+.result-highlight .rl{color:rgba(255,255,255,.7);font-size:12px;text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px}
+.result-highlight .rv{font-family:'Syne',sans-serif;font-size:28px;font-weight:800;color:#fff}
+.gap-analysis{background:linear-gradient(135deg,#0a0a0a,#1a1a2e);border-radius:20px;padding:28px;margin-top:20px;color:#fff}
+.gap-analysis h4{font-family:'Syne',sans-serif;font-size:16px;font-weight:700;margin-bottom:16px;color:rgba(255,255,255,.6)}
+.gap-item{display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.07)}
+.gap-item:last-child{border-bottom:none}
+.gap-skill{font-size:14px;font-weight:500}
+.gap-jump{font-size:13px;color:var(--green);font-weight:600}
+.gap-btn{font-size:12px;background:var(--accent);color:#fff;padding:5px 14px;border-radius:100px;cursor:pointer;border:none;font-family:inherit;transition:background .2s}
+.gap-btn:hover{background:var(--accent-dark)}
+
+/* ══════════════════════════════════
+   PAGE: B2B DASHBOARD
+══════════════════════════════════ */
+.dashboard{padding:80px 0}
+.dash-layout{max-width:1160px;margin:0 auto;padding:0 40px}
+.dash-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:36px}
+.dash-welcome h2{font-family:'Syne',sans-serif;font-size:28px;font-weight:800;letter-spacing:-1px}
+.dash-welcome p{font-size:14px;color:var(--muted);margin-top:4px}
+.kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:32px}
+.kpi{background:#fff;border:1px solid var(--border);border-radius:18px;padding:22px 20px}
+.kpi-label{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;margin-bottom:8px}
+.kpi-val{font-family:'Syne',sans-serif;font-size:32px;font-weight:800;letter-spacing:-1px;line-height:1;margin-bottom:6px}
+.kpi-delta{font-size:12px;font-weight:600}
+.kpi-delta.up{color:var(--green)}.kpi-delta.down{color:var(--red)}
+.dash-mid{display:grid;grid-template-columns:2fr 1fr;gap:24px;margin-bottom:24px}
+.chart-card{background:#fff;border:1px solid var(--border);border-radius:20px;padding:28px}
+.chart-card h3{font-family:'Syne',sans-serif;font-size:17px;font-weight:700;margin-bottom:24px}
+.bar-chart{display:flex;align-items:flex-end;gap:12px;height:160px}
+.bar-group{display:flex;flex-direction:column;align-items:center;gap:6px;flex:1}
+.bar{border-radius:6px 6px 0 0;width:100%;transition:opacity .2s}
+.bar:hover{opacity:.8}
+.bar-label{font-size:11px;color:var(--muted);text-align:center}
+.skills-list{display:flex;flex-direction:column;gap:12px}
+.skill-row{display:flex;align-items:center;gap:12px}
+.skill-name{font-size:13px;flex:0 0 130px;color:var(--muted)}
+.skill-track{flex:1;height:7px;background:var(--off);border-radius:100px;overflow:hidden}
+.skill-fill{height:100%;border-radius:100px;background:var(--accent)}
+.skill-pct{font-size:12px;font-weight:600;color:var(--muted);flex:0 0 32px;text-align:right}
+.team-table{background:#fff;border:1px solid var(--border);border-radius:20px;overflow:hidden}
+.table-header{display:grid;grid-template-columns:2fr 1.5fr 1fr 1fr 1fr;gap:0;padding:14px 24px;background:var(--off);border-bottom:1px solid var(--border)}
+.table-header span{font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.07em}
+.table-row{display:grid;grid-template-columns:2fr 1.5fr 1fr 1fr 1fr;gap:0;padding:16px 24px;border-bottom:1px solid var(--border);align-items:center;transition:background .15s}
+.table-row:last-child{border-bottom:none}
+.table-row:hover{background:var(--cream)}
+.table-row .emp-name{display:flex;align-items:center;gap:10px;font-size:14px;font-weight:500}
+.table-row .emp-role{font-size:12px;color:var(--muted);margin-top:2px}
+.progress-mini{height:5px;width:80px;background:var(--off);border-radius:100px;overflow:hidden;display:inline-block}
+.progress-mini-fill{height:100%;border-radius:100px;background:var(--accent)}
+
+/* ══════════════════════════════════
+   PAGE: PROFILE
+══════════════════════════════════ */
+.profile-page{padding:80px 0}
+.profile-layout{max-width:1000px;margin:0 auto;padding:0 40px}
+.profile-hero-card{background:var(--black);border-radius:28px;padding:40px;display:grid;grid-template-columns:auto 1fr auto;gap:28px;align-items:center;margin-bottom:28px}
+.profile-avatar{width:80px;height:80px;border-radius:20px;background:var(--accent);display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-size:28px;font-weight:800;color:#fff;flex-shrink:0}
+.profile-name{font-family:'Syne',sans-serif;font-size:26px;font-weight:800;color:#fff;margin-bottom:6px;letter-spacing:-1px}
+.profile-meta{font-size:14px;color:rgba(255,255,255,.5);display:flex;gap:16px;flex-wrap:wrap}
+.profile-meta span{display:flex;align-items:center;gap:6px}
+.profile-score{text-align:center}
+.score-ring{width:90px;height:90px;border-radius:50%;background:conic-gradient(var(--accent) 0% 82%,rgba(255,255,255,.1) 82% 100%);display:flex;align-items:center;justify-content:center;margin-bottom:8px;position:relative}
+.score-inner{width:70px;height:70px;border-radius:50%;background:var(--black);display:flex;align-items:center;justify-content:center;flex-direction:column}
+.score-inner span:first-child{font-family:'Syne',sans-serif;font-size:20px;font-weight:800;color:#fff;line-height:1}
+.score-inner span:last-child{font-size:10px;color:rgba(255,255,255,.4)}
+.score-label{font-size:12px;color:rgba(255,255,255,.4);text-align:center;text-transform:uppercase;letter-spacing:.07em}
+.profile-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.profile-section{background:#fff;border:1px solid var(--border);border-radius:20px;padding:28px}
+.profile-section h3{font-family:'Syne',sans-serif;font-size:17px;font-weight:700;margin-bottom:20px}
+.cert-item{display:flex;align-items:center;gap:14px;padding:12px 0;border-bottom:1px solid var(--border)}
+.cert-item:last-child{border-bottom:none}
+.cert-icon{width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.cert-name{font-size:14px;font-weight:500;margin-bottom:3px}
+.cert-date{font-size:12px;color:var(--muted)}
+.cert-score{font-family:'Syne',sans-serif;font-size:18px;font-weight:700;margin-left:auto;color:var(--green)}
+.tools-grid{display:flex;flex-wrap:wrap;gap:10px}
+.tool-chip{padding:8px 16px;border-radius:100px;background:var(--off);border:1px solid var(--border);font-size:13px;font-weight:500;display:flex;align-items:center;gap:7px}
+.tool-chip .tool-level{font-size:10px;color:var(--muted)}
+
+/* ══════════════════════════════════
+   FOOTER
+══════════════════════════════════ */
+.site-footer{background:var(--black);padding:48px 40px 32px;margin-top:60px}
+.footer-inner{max-width:1160px;margin:0 auto}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:40px}
+.footer-brand .logo{display:block;margin-bottom:12px}
+.footer-brand p{font-size:13px;color:rgba(255,255,255,.35);line-height:1.7;max-width:240px}
+.footer-col h4{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:#fff;margin-bottom:16px}
+.footer-col ul{list-style:none}
+.footer-col ul li{margin-bottom:10px}
+.footer-col ul a{font-size:13px;color:rgba(255,255,255,.35);text-decoration:none;cursor:pointer;transition:color .2s}
+.footer-col ul a:hover{color:#fff}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.07);padding-top:24px;display:flex;justify-content:space-between;align-items:center;font-size:12px;color:rgba(255,255,255,.25)}
+
+/* ══ TOAST ══ */
+.toast{position:fixed;bottom:28px;right:28px;background:var(--black);color:#fff;padding:14px 22px;border-radius:14px;font-size:14px;z-index:500;transform:translateY(80px);opacity:0;transition:all .3s;pointer-events:none;display:flex;align-items:center;gap:10px;max-width:320px}
+.toast.show{transform:translateY(0);opacity:1}
+
+/* ══ RESPONSIVE ══ */
+@media(max-width:900px){
+  .hero-wrap{grid-template-columns:1fr;gap:40px;padding:110px 24px 60px}
+  .hero-cards{display:none}
+  .nav-tabs{display:none}
+  .courses-list,.courses-grid{grid-template-columns:1fr}
+  .jobs-layout{grid-template-columns:1fr}
+  .filter-panel{display:none}
+  .calc-grid,.dash-mid,.profile-grid,.kpi-grid{grid-template-columns:1fr}
+  .table-header,.table-row{grid-template-columns:2fr 1.5fr 1fr}
+  .container,.dash-layout,.calc-layout,.profile-layout,.search-bar-wrap,.filter-chips,.courses-list,.page-hero{padding-left:24px;padding-right:24px}
+  .footer-top{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+
+<h2 class="sr-only">Digigroww — India's Professional Growth Ecosystem. Navigate using the top menu between Home, Courses, Jobs, Salary Calculator, and Dashboard.</h2>
+
+<!-- TOAST -->
+<div class="toast" id="toast">✅ <span id="toast-msg">Done!</span></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a class="logo" onclick="showPage('home')">Digi<span>groww</span></a>
+    <div class="nav-tabs">
+      <button class="nav-tab active" onclick="showPage('home')" data-page="home">Home</button>
+      <button class="nav-tab" onclick="showPage('courses')" data-page="courses">Courses</button>
+      <button class="nav-tab" onclick="showPage('jobs')" data-page="jobs">Jobs</button>
+      <button class="nav-tab" onclick="showPage('salary')" data-page="salary">Salary Calculator</button>
+      <button class="nav-tab" onclick="showPage('dashboard')" data-page="dashboard">B2B Dashboard</button>
+    </div>
+    <div class="nav-right">
+      <button class="btn btn-outline btn-sm" onclick="showPage('profile')">My Profile</button>
+      <div class="nav-user" onclick="showPage('profile')">
+        <div class="avatar">RK</div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- ══════════════ PAGE: HOME ══════════════ -->
+<div id="page-home" class="page active">
+  <div class="hero-wrap">
+    <div>
+      <div class="hero-live">India's #1 Growth Platform</div>
+      <h1 class="hero-h">Learn. Verify.<em>Get Hired.</em></h1>
+      <p class="hero-sub">Expert-led courses, AI-verified certifications, and a tool-first job portal built for India's digital marketing & sales professionals.</p>
+      <div class="hero-btns">
+        <button class="btn btn-dark" onclick="showPage('courses')">Browse Courses →</button>
+        <button class="btn btn-outline" onclick="showPage('salary')">Check My Salary</button>
+      </div>
+      <div class="hero-trust">
+        <div class="trust-avatars">
+          <div class="avatar" style="background:#7c3aed">AK</div>
+          <div class="avatar" style="background:#00c896">SM</div>
+          <div class="avatar" style="background:#d4a017">PR</div>
+          <div class="avatar" style="background:#ff4757">VN</div>
+        </div>
+        <span>Trusted by <strong>12,000+</strong> marketing professionals</span>
+      </div>
+    </div>
+    <div class="hero-cards">
+      <div class="hero-card c-blue" onclick="showPage('courses')">
+        <div class="card-arrow">→</div>
+        <div class="icon">🎓</div>
+        <h4>Learning Hub</h4>
+        <p>Practical courses from industry veterans with verified certificates</p>
+      </div>
+      <div class="hero-card c-gold" onclick="showPage('dashboard')">
+        <div class="card-arrow">→</div>
+        <div class="icon">🏛</div>
+        <h4>Enterprise SaaS</h4>
+        <p>Domain SSO for agencies with skill heatmaps for HR teams</p>
+      </div>
+      <div class="hero-card c-green" onclick="showPage('jobs')">
+        <div class="card-arrow">→</div>
+        <div class="icon">💼</div>
+        <h4>Job Portal</h4>
+        <p>Tool-first profiles filtered by verified expertise scores</p>
+      </div>
+      <div class="hero-card c-purple" onclick="showPage('salary')">
+        <div class="card-arrow">→</div>
+        <div class="icon">🧮</div>
+        <h4>Salary Calculator</h4>
+        <p>In-hand salary + gap analysis for your next ₹ bracket</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="stats-bar">
+    <div class="stats-inner">
+      <div class="stat-item"><div class="stat-n">2,400+</div><div class="stat-l">Expert-led courses</div></div>
+      <div class="stat-item"><div class="stat-n">480+</div><div class="stat-l">Partner companies</div></div>
+      <div class="stat-item"><div class="stat-n">₹12L</div><div class="stat-l">Avg salary after cert</div></div>
+      <div class="stat-item"><div class="stat-n">94%</div><div class="stat-l">Placement rate</div></div>
+    </div>
+  </div>
+
+  <div class="courses-section">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <div class="section-eyebrow">Trending Now</div>
+          <h2 class="section-h">Top Courses This Week</h2>
+        </div>
+        <button class="btn btn-outline btn-sm" onclick="showPage('courses')">View All →</button>
+      </div>
+      <div class="courses-grid" id="home-courses"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ PAGE: COURSES ══════════════ -->
+<div id="page-courses" class="page">
+  <div class="page-hero">
+    <div class="page-hero-inner">
+      <p class="section-eyebrow" style="color:rgba(255,255,255,.4)">Expert-Led Learning Hub</p>
+      <h1>Master the Tools.<br>Get the Job.</h1>
+      <p>Practical courses from India's top marketing & sales practitioners — not academics.</p>
+    </div>
+  </div>
+  <div class="search-bar-wrap">
+    <div class="search-bar">
+      <span class="search-icon">🔍</span>
+      <input type="text" placeholder="Search courses, skills, tools..." oninput="filterCourses(this.value)" id="course-search">
+      <button class="btn btn-accent btn-sm">Search</button>
+    </div>
+  </div>
+  <div class="filter-chips" id="filter-chips">
+    <button class="chip active" onclick="filterByCategory('All',this)">All</button>
+    <button class="chip" onclick="filterByCategory('Performance Marketing',this)">Performance Marketing</button>
+    <button class="chip" onclick="filterByCategory('Sales',this)">High-Ticket Sales</button>
+    <button class="chip" onclick="filterByCategory('SEO',this)">SEO</button>
+    <button class="chip" onclick="filterByCategory('UI/UX',this)">UI/UX Conversion</button>
+    <button class="chip" onclick="filterByCategory('Analytics',this)">Analytics</button>
+    <button class="chip" onclick="filterByCategory('Social',this)">Social Media</button>
+  </div>
+  <div class="courses-list" id="all-courses"></div>
+</div>
+
+<!-- ══════════════ PAGE: JOBS ══════════════ -->
+<div id="page-jobs" class="page">
+  <div class="page-hero">
+    <div class="page-hero-inner">
+      <p class="section-eyebrow" style="color:rgba(255,255,255,.4)">Tool-First Job Portal</p>
+      <h1>Get Hired on<br>What You Can Do.</h1>
+      <p>Profiles filtered by verified tool expertise — not just years of experience.</p>
+    </div>
+  </div>
+  <div style="height:28px"></div>
+  <div class="jobs-layout">
+    <aside class="filter-panel">
+      <h3>Filter Jobs</h3>
+      <div class="filter-group">
+        <span class="label">Experience</span>
+        <label class="checkbox-item"><input type="checkbox" checked onchange="renderJobs()"> 0–2 years</label>
+        <label class="checkbox-item"><input type="checkbox" checked onchange="renderJobs()"> 2–5 years</label>
+        <label class="checkbox-item"><input type="checkbox" checked onchange="renderJobs()"> 5+ years</label>
+      </div>
+      <div class="filter-group">
+        <span class="label">Tools Required</span>
+        <label class="checkbox-item"><input type="checkbox" onchange="renderJobs()"> GA4</label>
+        <label class="checkbox-item"><input type="checkbox" onchange="renderJobs()"> Meta Ads</label>
+        <label class="checkbox-item"><input type="checkbox" onchange="renderJobs()"> HubSpot</label>
+        <label class="checkbox-item"><input type="checkbox" onchange="renderJobs()"> SEMrush</label>
+      </div>
+      <div class="filter-group">
+        <span class="label">CTC Range</span>
+        <select class="select-field" onchange="renderJobs()">
+          <option>Any CTC</option>
+          <option>₹4L – ₹8L</option>
+          <option>₹8L – ₹15L</option>
+          <option>₹15L+</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <span class="label">Location</span>
+        <label class="checkbox-item"><input type="checkbox" checked onchange="renderJobs()"> Mumbai</label>
+        <label class="checkbox-item"><input type="checkbox" checked onchange="renderJobs()"> Delhi</label>
+        <label class="checkbox-item"><input type="checkbox" checked onchange="renderJobs()"> Bengaluru</label>
+        <label class="checkbox-item"><input type="checkbox" checked onchange="renderJobs()"> Remote</label>
+      </div>
+      <button class="btn btn-accent" style="width:100%;justify-content:center" onclick="toast('Filters applied!')">Apply Filters</button>
+    </aside>
+    <div class="jobs-list" id="jobs-list"></div>
+  </div>
+</div>
+
+<!-- ══════════════ PAGE: SALARY ══════════════ -->
+<div id="page-salary" class="page">
+  <div class="calc-page">
+    <div class="calc-layout">
+      <div class="section-eyebrow">Salary & Take-Home Calculator</div>
+      <h1 class="section-h">Know Your Real<br>In-Hand Salary</h1>
+      <p class="section-sub">Calculate exactly what lands in your account after tax, PF & professional tax — then discover which skill gets you to the next bracket.</p>
+
+      <div class="calc-grid">
+        <div class="calc-panel">
+          <h3>Your Details</h3>
+
+          <div class="form-group">
+            <label class="label">Annual CTC (₹)</label>
+            <input class="input-field" type="number" id="ctc" value="800000" min="100000" max="10000000" step="10000" oninput="calcSalary()">
+          </div>
+
+          <div class="form-group">
+            <label class="label">City</label>
+            <select class="select-field" id="city" onchange="calcSalary()">
+              <option value="mum">Mumbai / Pune</option>
+              <option value="del">Delhi / NCR</option>
+              <option value="bang">Bengaluru</option>
+              <option value="other">Other cities</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="label">Age</label>
+            <select class="select-field" id="age" onchange="calcSalary()">
+              <option value="young">Below 60</option>
+              <option value="senior">60–80</option>
+              <option value="super">Above 80</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="label">Tax Regime</label>
+            <div class="regime-tabs">
+              <button class="regime-tab active" id="tab-new" onclick="setRegime('new')">New Regime</button>
+              <button class="regime-tab" id="tab-old" onclick="setRegime('old')">Old Regime</button>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="label">EPF Contribution</label>
+            <select class="select-field" id="epf" onchange="calcSalary()">
+              <option value="yes">Yes (12% of Basic)</option>
+              <option value="no">No EPF</option>
+            </select>
+          </div>
+        </div>
+
+        <div>
+          <div class="calc-panel">
+            <h3>Breakdown</h3>
+            <div id="salary-breakdown">
+              <div class="result-row"><span class="r-label">Gross CTC</span><span class="r-val" id="r-ctc">₹8,00,000</span></div>
+              <div class="result-row deduction"><span class="r-label">EPF (Employee)</span><span class="r-val" id="r-epf">– ₹21,600</span></div>
+              <div class="result-row deduction"><span class="r-label">Professional Tax</span><span class="r-val" id="r-pt">– ₹2,400</span></div>
+              <div class="result-row deduction"><span class="r-label">Income Tax</span><span class="r-val" id="r-tax">– ₹28,000</span></div>
+              <div class="result-row"><span class="r-label">Net Annual</span><span class="r-val" id="r-net">₹7,48,000</span></div>
+            </div>
+            <div class="result-highlight">
+              <div><div class="rl">Monthly In-Hand</div><div class="rv" id="r-monthly">₹62,333</div></div>
+              <div style="font-size:32px">💰</div>
+            </div>
+          </div>
+
+          <div class="gap-analysis" id="gap-section">
+            <h4>📊 Gap Analysis — Your Next Bracket</h4>
+            <div id="gap-items"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ PAGE: DASHBOARD ══════════════ -->
+<div id="page-dashboard" class="page">
+  <div class="dashboard">
+    <div class="dash-layout">
+      <div class="dash-header">
+        <div class="dash-welcome">
+          <h2>Welcome back, Ogilvy India 👋</h2>
+          <p>Team overview · Updated just now</p>
+        </div>
+        <div style="display:flex;gap:12px">
+          <button class="btn btn-outline btn-sm" onclick="toast('Report exported!')">Export Report</button>
+          <button class="btn btn-accent btn-sm" onclick="toast('Invites sent to 5 members!')">+ Invite Team</button>
+        </div>
+      </div>
+
+      <div class="kpi-grid">
+        <div class="kpi">
+          <div class="kpi-label">Active Learners</div>
+          <div class="kpi-val">124</div>
+          <div class="kpi-delta up">↑ 12 this month</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-label">Certs Earned</div>
+          <div class="kpi-val">89</div>
+          <div class="kpi-delta up">↑ 23 this quarter</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-label">Avg. Completion</div>
+          <div class="kpi-val">67%</div>
+          <div class="kpi-delta up">↑ 8% vs last month</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-label">Skill Gap Score</div>
+          <div class="kpi-val">4.2</div>
+          <div class="kpi-delta down">↓ 0.3 remaining</div>
+        </div>
+      </div>
+
+      <div class="dash-mid">
+        <div class="chart-card">
+          <h3>Learning Activity — Last 6 Months</h3>
+          <div class="bar-chart" id="activity-chart"></div>
+        </div>
+        <div class="chart-card">
+          <h3>Top Skill Gaps</h3>
+          <div class="skills-list">
+            <div class="skill-row"><span class="skill-name">Programmatic</span><div class="skill-track"><div class="skill-fill" style="width:82%"></div></div><span class="skill-pct">82%</span></div>
+            <div class="skill-row"><span class="skill-name">GA4 Advanced</span><div class="skill-track"><div class="skill-fill" style="width:71%;background:var(--gold)"></div></div><span class="skill-pct">71%</span></div>
+            <div class="skill-row"><span class="skill-name">CRO / A-B Test</span><div class="skill-track"><div class="skill-fill" style="width:58%;background:var(--green)"></div></div><span class="skill-pct">58%</span></div>
+            <div class="skill-row"><span class="skill-name">HubSpot CRM</span><div class="skill-track"><div class="skill-fill" style="width:44%;background:var(--purple)"></div></div><span class="skill-pct">44%</span></div>
+            <div class="skill-row"><span class="skill-name">Video Ads</span><div class="skill-track"><div class="skill-fill" style="width:38%;background:var(--red)"></div></div><span class="skill-pct">38%</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="team-table">
+        <div class="table-header">
+          <span>Employee</span>
+          <span>Current Course</span>
+          <span>Progress</span>
+          <span>Certs</span>
+          <span>Status</span>
+        </div>
+        <div id="team-rows"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ PAGE: PROFILE ══════════════ -->
+<div id="page-profile" class="page">
+  <div class="profile-page">
+    <div class="profile-layout">
+      <div class="profile-hero-card">
+        <div class="profile-avatar">RK</div>
+        <div>
+          <div class="profile-name">Rahul Kapoor</div>
+          <div class="profile-meta">
+            <span>📍 Mumbai</span>
+            <span>💼 Performance Marketing Lead</span>
+            <span>🏢 Open to Opportunities</span>
+          </div>
+          <div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap">
+            <span class="tag badge-blue">Meta Ads Pro</span>
+            <span class="tag badge-green">GA4 Certified</span>
+            <span class="tag badge-gold">6 YoE</span>
+          </div>
+        </div>
+        <div class="profile-score">
+          <div class="score-ring">
+            <div class="score-inner">
+              <span>82</span>
+              <span>/100</span>
+            </div>
+          </div>
+          <div class="score-label">DG Score</div>
+        </div>
+      </div>
+
+      <div style="display:flex;gap:14px;margin-bottom:28px;flex-wrap:wrap">
+        <button class="btn btn-dark btn-sm" onclick="toast('Profile shared with 3 recruiters!')">Share Profile →</button>
+        <button class="btn btn-outline btn-sm" onclick="showPage('courses')">Improve Score</button>
+        <button class="btn btn-outline btn-sm" onclick="showPage('jobs')">Browse Jobs</button>
+      </div>
+
+      <div class="profile-grid">
+        <div class="profile-section">
+          <h3>Certifications</h3>
+          <div class="cert-item">
+            <div class="cert-icon" style="background:var(--accent-light)">🎯</div>
+            <div><div class="cert-name">Performance Marketing Mastery</div><div class="cert-date">Completed Jan 2025</div></div>
+            <div class="cert-score">94%</div>
+          </div>
+          <div class="cert-item">
+            <div class="cert-icon" style="background:var(--green-light)">📊</div>
+            <div><div class="cert-name">GA4 & Data Analytics</div><div class="cert-date">Completed Nov 2024</div></div>
+            <div class="cert-score">88%</div>
+          </div>
+          <div class="cert-item">
+            <div class="cert-icon" style="background:var(--gold-light)">🤝</div>
+            <div><div class="cert-name">High-Ticket Sales Framework</div><div class="cert-date">Completed Sep 2024</div></div>
+            <div class="cert-score">79%</div>
+          </div>
+          <button class="btn btn-outline btn-sm" style="margin-top:16px" onclick="showPage('courses')">+ Earn More Certs</button>
+        </div>
+
+        <div class="profile-section">
+          <h3>Verified Tool Expertise</h3>
+          <div class="tools-grid">
+            <div class="tool-chip">Meta Ads <span class="tool-level badge-blue" style="margin-left:4px">Expert</span></div>
+            <div class="tool-chip">Google Ads <span class="tool-level badge-blue" style="margin-left:4px">Expert</span></div>
+            <div class="tool-chip">GA4 <span class="tool-level badge-green" style="margin-left:4px">Advanced</span></div>
+            <div class="tool-chip">HubSpot <span class="tool-level badge-gold" style="margin-left:4px">Intermediate</span></div>
+            <div class="tool-chip">SEMrush <span class="tool-level badge-gold" style="margin-left:4px">Intermediate</span></div>
+            <div class="tool-chip">Hotjar <span class="tool-level badge-gray" style="margin-left:4px">Beginner</span></div>
+            <div class="tool-chip">Notion <span class="tool-level badge-gray" style="margin-left:4px">Beginner</span></div>
+          </div>
+          <div style="margin-top:20px;padding-top:20px;border-top:1px solid var(--border)">
+            <div class="label" style="margin-bottom:8px">Expected CTC</div>
+            <div style="font-family:'Syne',sans-serif;font-size:24px;font-weight:800">₹18 – 22 LPA</div>
+          </div>
+        </div>
+
+        <div class="profile-section" style="grid-column:span 2">
+          <h3>Recommended Next Steps</h3>
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px" id="recommended-courses"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal-overlay" onclick="closeModal(event)">
+  <div class="modal" id="modal-content"></div>
+</div>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a class="logo" onclick="showPage('home')">Digi<span>groww</span></a>
+        <p>India's full-stack professional ecosystem for the growth economy.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Platform</h4>
+        <ul>
+          <li><a onclick="showPage('courses')">Courses</a></li>
+          <li><a onclick="showPage('jobs')">Jobs</a></li>
+          <li><a onclick="showPage('salary')">Salary Calculator</a></li>
+          <li><a onclick="showPage('dashboard')">Enterprise</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a onclick="toast('About page coming soon!')">About Us</a></li>
+          <li><a onclick="toast('Blog coming soon!')">Blog</a></li>
+          <li><a onclick="toast('Careers page coming soon!')">Careers</a></li>
+          <li><a onclick="toast('Press kit coming soon!')">Press</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a>Mumbai, India</a></li>
+          <li><a onclick="toast('Email copied!')">hello@digigroww.com</a></li>
+          <li><a onclick="toast('Investor deck sent!')">Investor Relations</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Digigroww Technologies Pvt. Ltd.</span>
+      <span>Privacy · Terms · Sitemap</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ══════════════════════════════════
+// DATA
+// ══════════════════════════════════
+const COURSES = [
+  {id:1,title:"Performance Marketing Mastery",instructor:"Ankit Oberoi",role:"Ex-Growth Lead, Swiggy",category:"Performance Marketing",price:4999,rating:4.9,students:3240,thumb:"🎯",color:"#e8ecff",cert:true,duration:"18 hrs",level:"Advanced",desc:"Master Meta Ads, Google Ads & Programmatic buying from scratch to ₹10L/month budget management. Includes real campaign walkthroughs and budget simulations."},
+  {id:2,title:"High-Ticket B2B Sales Framework",instructor:"Priya Sharma",role:"VP Sales, Razorpay",category:"Sales",price:5999,rating:4.8,students:1820,thumb:"🤝",color:"#fef7e4",cert:true,duration:"14 hrs",level:"Intermediate",desc:"Close ₹50L+ enterprise deals using consultative selling, objection handling, and VPC pitching techniques used at India's top SaaS companies."},
+  {id:3,title:"GA4 & Analytics for Marketers",instructor:"Siddharth Nair",role:"Analytics Head, Zomato",category:"Analytics",price:3499,rating:4.7,students:5100,thumb:"📊",color:"#e0fff6",cert:true,duration:"10 hrs",level:"Beginner",desc:"From UTM setup to funnel analysis — learn to build dashboards and present data-driven insights to leadership in plain English."},
+  {id:4,title:"UI/UX Conversion Rate Optimization",instructor:"Kavya Menon",role:"Head of CRO, Meesho",category:"UI/UX",price:4499,rating:4.8,students:2340,thumb:"🖥",color:"#f3eeff",cert:true,duration:"12 hrs",level:"Intermediate",desc:"Run A/B tests, heatmap analysis, and user interviews to systematically improve conversion rates. Includes Hotjar, VWO, and Figma walkthroughs."},
+  {id:5,title:"SEO Strategy for Growth Teams",instructor:"Rohit Bhatia",role:"SEO Director, Nykaa",category:"SEO",price:3999,rating:4.6,students:4200,thumb:"🔍",color:"#fff0f1",cert:true,duration:"16 hrs",level:"Intermediate",desc:"Technical SEO, content strategy, and link building frameworks used to rank in competitive Indian markets. Includes SEMrush and Ahrefs deep dives."},
+  {id:6,title:"Instagram & Reels Growth Playbook",instructor:"Neha Gupta",role:"Social Lead, boAt",category:"Social",price:2999,rating:4.5,students:6800,thumb:"📱",color:"#e0fff6",cert:false,duration:"8 hrs",level:"Beginner",desc:"Build a content engine for brand and creator accounts. Learn hooks, scripting, and algorithm hacks that drove 10x growth for boAt's social channels."},
+  {id:7,title:"HubSpot CRM for Marketing Teams",instructor:"Vikram Patel",role:"RevOps Lead, Freshworks",category:"Analytics",price:2499,rating:4.7,students:2900,thumb:"⚙️",color:"#fef7e4",cert:true,duration:"9 hrs",level:"Beginner",desc:"Set up and optimize HubSpot for lead management, email automation, and sales pipeline visibility. Get certified in under a week."},
+  {id:8,title:"Programmatic Advertising Bootcamp",instructor:"Shreya Verma",role:"Programmatic Head, GroupM",category:"Performance Marketing",price:6499,rating:4.9,students:980,thumb:"📺",color:"#e8ecff",cert:true,duration:"22 hrs",level:"Advanced",desc:"DSPs, DMPs, and trading desks demystified. Manage ₹50L+ programmatic budgets with confidence — from DV360 to The Trade Desk."},
+  {id:9,title:"Email Marketing & Automation",instructor:"Raj Kumar",role:"Lifecycle Lead, CRED",category:"Sales",price:2999,rating:4.6,students:3400,thumb:"✉️",color:"#fff0f1",cert:false,duration:"7 hrs",level:"Beginner",desc:"Build drip campaigns, trigger-based flows, and win-back sequences that generate revenue. Real playbooks from CRED's retention team."},
+];
+
+const JOBS = [
+  {id:1,title:"Performance Marketing Manager",company:"Dentsu India",logo:"🏢",bg:"#e8ecff",location:"Mumbai",exp:"3–5 yrs",ctc:"₹14–18 LPA",tools:["Meta Ads","GA4","DV360"],posted:"2d ago",cert:true},
+  {id:2,title:"Growth Marketing Lead",company:"Razorpay",logo:"⚡",bg:"#e0fff6",location:"Bengaluru",exp:"5+ yrs",ctc:"₹22–30 LPA",tools:["SEMrush","HubSpot","SQL"],posted:"1d ago",cert:true},
+  {id:3,title:"SEO Specialist",company:"Nykaa",logo:"💄",bg:"#fff0f1",location:"Mumbai",exp:"2–4 yrs",ctc:"₹8–12 LPA",tools:["Ahrefs","SEMrush","GSC"],posted:"3d ago",cert:false},
+  {id:4,title:"B2B Sales Executive",company:"Freshworks",logo:"🌿",bg:"#fef7e4",location:"Delhi NCR",exp:"1–3 yrs",ctc:"₹6–10 LPA",tools:["HubSpot","Salesforce"],posted:"5d ago",cert:false},
+  {id:5,title:"CRO & Analytics Manager",company:"Meesho",logo:"🛍",bg:"#f3eeff",location:"Bengaluru",exp:"4–6 yrs",ctc:"₹18–24 LPA",tools:["GA4","Hotjar","VWO"],posted:"1d ago",cert:true},
+  {id:6,title:"Programmatic Media Buyer",company:"GroupM",logo:"📡",bg:"#e8ecff",location:"Mumbai",exp:"2–5 yrs",ctc:"₹12–16 LPA",tools:["DV360","TTD","Xandr"],posted:"4d ago",cert:true},
+  {id:7,title:"Social Media Manager",company:"boAt",logo:"🎧",bg:"#e0fff6",location:"Remote",exp:"1–3 yrs",ctc:"₹6–9 LPA",tools:["Meta Ads","Canva"],posted:"6d ago",cert:false},
+];
+
+const TEAM = [
+  {name:"Arjun Singh",role:"Sr. Copywriter",course:"Performance Marketing",progress:84,certs:3,status:"Active"},
+  {name:"Meera Pillai",role:"Account Manager",course:"GA4 & Analytics",progress:61,certs:2,status:"Active"},
+  {name:"Dev Sharma",role:"Social Executive",course:"Programmatic Bootcamp",progress:28,certs:1,status:"In Progress"},
+  {name:"Pooja Nair",role:"Media Planner",course:"High-Ticket Sales",progress:95,certs:4,status:"Completed"},
+  {name:"Karan Mehta",role:"Digital Strategist",course:"CRO & UX",progress:72,certs:2,status:"Active"},
+  {name:"Sanya Bose",role:"Content Lead",course:"Instagram Growth",progress:45,certs:1,status:"In Progress"},
+];
+
+// ══════════════════════════════════
+// NAVIGATION
+// ══════════════════════════════════
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-'+id).classList.add('active');
+  document.querySelectorAll('.nav-tab').forEach(t => {
+    t.classList.toggle('active', t.dataset.page === id);
+  });
+  window.scrollTo({top:0,behavior:'smooth'});
+  if(id==='home') renderHomeCouurses();
+  if(id==='courses') renderAllCourses();
+  if(id==='jobs') renderJobs();
+  if(id==='dashboard') renderDashboard();
+  if(id==='salary') calcSalary();
+  if(id==='profile') renderProfile();
+}
+
+// ══════════════════════════════════
+// RENDER COURSES
+// ══════════════════════════════════
+function courseCardHTML(c, small) {
+  return `<div class="course-card" onclick="openCourse(${c.id})">
+    <div class="course-thumb" style="background:${c.color}">${c.thumb}</div>
+    <div class="course-body">
+      <div class="course-meta">
+        <span class="tag badge-${c.category==='Performance Marketing'?'blue':c.category==='Sales'?'gold':c.category==='Analytics'?'green':c.category==='UI/UX'?'purple':c.category==='SEO'?'red':'gray'}">${c.category}</span>
+        ${c.cert?'<span class="tag badge-green">✓ Certificate</span>':''}
+      </div>
+      <div class="course-title">${c.title}</div>
+      <div class="course-instructor">
+        <div class="avatar" style="width:24px;height:24px;font-size:9px;background:var(--accent)">${c.instructor.split(' ').map(w=>w[0]).join('')}</div>
+        ${c.instructor} · ${c.role}
+      </div>
+      <div class="course-footer">
+        <div class="course-price">₹${c.price.toLocaleString('en-IN')}</div>
+        <div class="rating"><span class="stars">★★★★★</span> ${c.rating} (${(c.students/1000).toFixed(1)}k)</div>
+      </div>
+    </div>
+  </div>`;
+}
+
+function renderHomeCouurses() {
+  document.getElementById('home-courses').innerHTML = COURSES.slice(0,3).map(c=>courseCardHTML(c)).join('');
+}
+
+let currentFilter = 'All', currentSearch = '';
+function renderAllCourses() {
+  const list = COURSES.filter(c => {
+    const matchCat = currentFilter === 'All' || c.category === currentFilter;
+    const matchSearch = !currentSearch || c.title.toLowerCase().includes(currentSearch.toLowerCase()) || c.instructor.toLowerCase().includes(currentSearch.toLowerCase());
+    return matchCat && matchSearch;
+  });
+  document.getElementById('all-courses').innerHTML = list.length ? list.map(c=>courseCardHTML(c)).join('') : '<p style="color:var(--muted);padding:40px;grid-column:span 3;text-align:center">No courses found. Try a different filter.</p>';
+}
+function filterCourses(v) { currentSearch = v; renderAllCourses(); }
+function filterByCategory(cat, el) {
+  currentFilter = cat;
+  document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+  el.classList.add('active');
+  renderAllCourses();
+}
+
+function openCourse(id) {
+  const c = COURSES.find(x=>x.id===id);
+  document.getElementById('modal-content').innerHTML = `
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div style="background:${c.color};border-radius:16px;padding:40px;text-align:center;font-size:64px;margin-bottom:24px">${c.thumb}</div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px">
+      <span class="tag badge-blue">${c.category}</span>
+      <span class="tag badge-gray">${c.level}</span>
+      <span class="tag badge-gray">${c.duration}</span>
+      ${c.cert?'<span class="tag badge-green">✓ Certificate</span>':''}
+    </div>
+    <h2 style="font-family:'Syne',sans-serif;font-size:26px;font-weight:800;letter-spacing:-1px;margin-bottom:8px">${c.title}</h2>
+    <p style="font-size:14px;color:var(--muted);margin-bottom:8px">by <strong>${c.instructor}</strong> · ${c.role}</p>
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:20px;font-size:14px">
+      <span class="stars">★★★★★</span> <strong>${c.rating}</strong> <span style="color:var(--muted)">(${c.students.toLocaleString('en-IN')} students)</span>
+    </div>
+    <p style="font-size:15px;color:var(--muted);line-height:1.75;margin-bottom:28px">${c.desc}</p>
+    <div style="display:flex;align-items:center;justify-content:space-between;padding-top:20px;border-top:1px solid var(--border)">
+      <div style="font-family:'Syne',sans-serif;font-size:28px;font-weight:800">₹${c.price.toLocaleString('en-IN')}</div>
+      <button class="btn btn-accent" onclick="toast('Enrolled in ${c.title}! Check your email.');closeModal()">Enroll Now →</button>
+    </div>`;
+  document.getElementById('modal-overlay').classList.add('open');
+}
+function closeModal(e) {
+  if(!e || e.target.id==='modal-overlay' || e.target.classList.contains('modal-close')) {
+    document.getElementById('modal-overlay').classList.remove('open');
+  }
+}
+
+// ══════════════════════════════════
+// RENDER JOBS
+// ══════════════════════════════════
+function renderJobs() {
+  document.getElementById('jobs-list').innerHTML = JOBS.map(j => `
+    <div class="job-card" onclick="openJob(${j.id})">
+      <div class="job-logo" style="background:${j.bg}">${j.logo}</div>
+      <div>
+        <div class="job-title">${j.title}</div>
+        <div class="job-company">${j.company} · ${j.location} · ${j.exp}</div>
+        <div class="job-tags">
+          ${j.tools.map(t=>`<span class="tag badge-gray">${t}</span>`).join('')}
+          ${j.cert?'<span class="tag badge-green">Digigroww Cert Preferred</span>':''}
+        </div>
+      </div>
+      <div class="job-right">
+        <div class="job-ctc">${j.ctc}</div>
+        <div class="job-posted">${j.posted}</div>
+        <button class="btn btn-accent btn-sm" style="margin-top:10px" onclick="event.stopPropagation();toast('Applied to ${j.title} at ${j.company}!')">Apply</button>
+      </div>
+    </div>`).join('');
+}
+
+function openJob(id) {
+  const j = JOBS.find(x=>x.id===id);
+  document.getElementById('modal-content').innerHTML = `
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div style="display:flex;align-items:center;gap:16px;margin-bottom:24px">
+      <div class="job-logo" style="background:${j.bg};width:64px;height:64px;font-size:28px;border-radius:16px">${j.logo}</div>
+      <div>
+        <h2 style="font-family:'Syne',sans-serif;font-size:22px;font-weight:800;margin-bottom:4px">${j.title}</h2>
+        <p style="font-size:14px;color:var(--muted)">${j.company} · ${j.location}</p>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:24px">
+      <div style="background:var(--off);border-radius:12px;padding:14px;text-align:center">
+        <div style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px">CTC</div>
+        <div style="font-family:'Syne',sans-serif;font-size:17px;font-weight:700;color:var(--green)">${j.ctc}</div>
+      </div>
+      <div style="background:var(--off);border-radius:12px;padding:14px;text-align:center">
+        <div style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px">Experience</div>
+        <div style="font-family:'Syne',sans-serif;font-size:17px;font-weight:700">${j.exp}</div>
+      </div>
+      <div style="background:var(--off);border-radius:12px;padding:14px;text-align:center">
+        <div style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px">Posted</div>
+        <div style="font-family:'Syne',sans-serif;font-size:17px;font-weight:700">${j.posted}</div>
+      </div>
+    </div>
+    <div style="margin-bottom:20px">
+      <div class="label" style="margin-bottom:10px">Required Tools & Skills</div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">${j.tools.map(t=>`<span class="tag badge-blue">${t}</span>`).join('')}${j.cert?'<span class="tag badge-green">✓ Digigroww Certificate</span>':''}</div>
+    </div>
+    <div style="background:var(--cream);border-radius:14px;padding:18px;margin-bottom:24px;font-size:14px;color:var(--muted);line-height:1.75">
+      We're looking for a results-driven professional with hands-on experience in ${j.tools.join(', ')}. You will own campaign strategy, execution, and reporting, directly impacting growth metrics. Digigroww-verified candidates get priority review.
+    </div>
+    <div style="display:flex;gap:12px">
+      <button class="btn btn-accent" onclick="toast('Applied to ${j.title}! HR will review within 48 hrs.');closeModal()">Apply Now →</button>
+      <button class="btn btn-outline" onclick="toast('Job saved to your profile!')">Save Job</button>
+    </div>`;
+  document.getElementById('modal-overlay').classList.add('open');
+}
+
+// ══════════════════════════════════
+// SALARY CALCULATOR
+// ══════════════════════════════════
+let regime = 'new';
+function setRegime(r) {
+  regime = r;
+  document.getElementById('tab-new').classList.toggle('active', r==='new');
+  document.getElementById('tab-old').classList.toggle('active', r==='old');
+  calcSalary();
+}
+
+function calcSalary() {
+  const ctc = parseInt(document.getElementById('ctc').value)||800000;
+  const city = document.getElementById('city').value;
+  const epfOpt = document.getElementById('epf').value;
+
+  // Basic = 40% of CTC
+  const basic = ctc * 0.4;
+  // EPF
+  const epfEmployee = epfOpt==='yes' ? Math.min(basic*0.12, 21600) : 0;
+  const epfEmployer = epfOpt==='yes' ? Math.min(basic*0.12, 21600) : 0;
+  // Professional Tax by city
+  const ptAnnual = (city==='mum'||city==='bang') ? 2400 : city==='del' ? 0 : 2400;
+  // Taxable income
+  const taxable = ctc - epfEmployee - (regime==='old' ? 50000 : 0); // 50k standard for old
+  // Tax slab (simplified, FY2025)
+  let tax = 0;
+  if(regime==='new') {
+    const slabs = [[0,300000,0],[300000,700000,.05],[700000,1000000,.1],[1000000,1200000,.15],[1200000,1500000,.2],[1500000,Infinity,.3]];
+    for(const [lo,hi,rate] of slabs) {
+      if(taxable>lo) tax += (Math.min(taxable,hi)-lo)*rate;
+    }
+    // rebate u/s 87A for new regime ≤7L
+    if(taxable<=700000) tax=0;
+  } else {
+    const slabs=[[0,250000,0],[250000,500000,.05],[500000,1000000,.2],[1000000,Infinity,.3]];
+    for(const [lo,hi,rate] of slabs) {
+      if(taxable>lo) tax += (Math.min(taxable,hi)-lo)*rate;
+    }
+    if(taxable<=500000) tax=0;
+  }
+  const cess = tax*0.04;
+  const totalTax = Math.round(tax+cess);
+  const netAnnual = ctc - epfEmployee - ptAnnual - totalTax;
+  const monthly = Math.round(netAnnual/12);
+
+  const fmt = n => '₹'+Math.abs(n).toLocaleString('en-IN');
+  document.getElementById('r-ctc').textContent = fmt(ctc);
+  document.getElementById('r-epf').textContent = epfEmployee>0 ? '– '+fmt(epfEmployee) : '₹0';
+  document.getElementById('r-pt').textContent = ptAnnual>0 ? '– '+fmt(ptAnnual) : '₹0';
+  document.getElementById('r-tax').textContent = totalTax>0 ? '– '+fmt(totalTax) : '₹0';
+  document.getElementById('r-net').textContent = fmt(netAnnual);
+  document.getElementById('r-monthly').textContent = fmt(monthly);
+
+  // Gap analysis
+  const ctcL = ctc/100000;
+  const gaps = [
+    {skill:'Programmatic Buying', bracket: ctcL<10?10:ctcL<16?16:22},
+    {skill:'Advanced GA4 + SQL', bracket: ctcL<12?12:ctcL<18?18:25},
+    {skill:'HubSpot + CRM Automation', bracket: ctcL<8?8:ctcL<14?14:20},
+  ];
+  document.getElementById('gap-items').innerHTML = gaps.map(g => `
+    <div class="gap-item">
+      <div>
+        <div class="gap-skill">${g.skill}</div>
+        <div style="font-size:12px;color:rgba(255,255,255,.4);margin-top:2px">Reach ₹${g.bracket}L LPA</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px">
+        <div class="gap-jump">+₹${(g.bracket - ctcL).toFixed(1)}L</div>
+        <button class="gap-btn" onclick="showPage('courses')">View →</button>
+      </div>
+    </div>`).join('');
+}
+
+// ══════════════════════════════════
+// DASHBOARD
+// ══════════════════════════════════
+function renderDashboard() {
+  // Bar chart
+  const months = ['Nov','Dec','Jan','Feb','Mar','Apr'];
+  const vals = [42,58,71,65,89,94];
+  const max = Math.max(...vals);
+  document.getElementById('activity-chart').innerHTML = months.map((m,i)=>`
+    <div class="bar-group">
+      <div class="bar" style="height:${(vals[i]/max)*140}px;background:${i===5?'var(--accent)':'var(--off)'}"></div>
+      <div class="bar-label">${m}</div>
+    </div>`).join('');
+
+  // Team table
+  document.getElementById('team-rows').innerHTML = TEAM.map(e=>`
+    <div class="table-row">
+      <div class="emp-name">
+        <div class="avatar" style="width:34px;height:34px;font-size:11px;background:var(--accent);flex-shrink:0">${e.name.split(' ').map(w=>w[0]).join('')}</div>
+        <div><div>${e.name}</div><div class="emp-role">${e.role}</div></div>
+      </div>
+      <div style="font-size:13px;color:var(--muted)">${e.course}</div>
+      <div><div class="progress-mini"><div class="progress-mini-fill" style="width:${e.progress}%"></div></div> <span style="font-size:12px;color:var(--muted);margin-left:6px">${e.progress}%</span></div>
+      <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:15px">${e.certs}</div>
+      <div><span class="tag ${e.status==='Active'?'badge-green':e.status==='Completed'?'badge-blue':'badge-gold'}">${e.status}</span></div>
+    </div>`).join('');
+}
+
+// ══════════════════════════════════
+// PROFILE
+// ══════════════════════════════════
+function renderProfile() {
+  const recs = COURSES.filter(c => c.category === 'Performance Marketing' || c.category === 'Analytics').slice(0,3);
+  document.getElementById('recommended-courses').innerHTML = recs.map(c=>`
+    <div style="background:var(--off);border-radius:16px;padding:18px;cursor:pointer;transition:all .2s" onclick="showPage('courses')" onmouseenter="this.style.transform='translateY(-3px)'" onmouseleave="this.style.transform=''">
+      <div style="font-size:32px;margin-bottom:10px">${c.thumb}</div>
+      <div style="font-family:'Syne',sans-serif;font-size:14px;font-weight:700;margin-bottom:6px;line-height:1.3">${c.title}</div>
+      <div style="font-size:12px;color:var(--muted);margin-bottom:12px">${c.instructor}</div>
+      <div style="font-family:'Syne',sans-serif;font-size:16px;font-weight:700">₹${c.price.toLocaleString('en-IN')}</div>
+    </div>`).join('');
+}
+
+// ══════════════════════════════════
+// TOAST
+// ══════════════════════════════════
+let toastTimer;
+function toast(msg) {
+  clearTimeout(toastTimer);
+  const t = document.getElementById('toast');
+  document.getElementById('toast-msg').textContent = msg;
+  t.classList.add('show');
+  toastTimer = setTimeout(()=>t.classList.remove('show'), 3200);
+}
+
+// ══════════════════════════════════
+// INIT
+// ══════════════════════════════════
+renderHomeCouurses();
+</script>
+</body>
+</html>
